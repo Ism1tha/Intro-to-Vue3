@@ -15,24 +15,32 @@
         <div class="product-container">
           <div class="product-image">
             <!-- Image goes here -->
-            <img :src="products[currentProductIndex].image">
+            <img :src="variants[currentVariantIndex].image">
           </div>
           <div class="product-info">
-            <h1>{{ products[currentProductIndex].name }}</h1>
-            <p v-if="products[currentProductIndex].onSale" style="color: red; font-weight: bold;">
+            <h1>{{ variants[currentVariantIndex].name }}</h1>
+            <p v-if="variants[currentVariantIndex].onSale" style="color: red; font-weight: bold;">
               On Sale!
             </p>
-            <template v-if="products[currentProductIndex].inventory > 10">
+            <template v-if="variants[currentVariantIndex].inventory > 10">
               <p>In Stock</p>
             </template>
-            <template v-else-if="products[currentProductIndex].inventory <= 10 && products[currentProductIndex].inventory > 0">
+            <template v-else-if="variants[currentVariantIndex].inventory <= 10 && variants[currentVariantIndex].inventory > 0">
               <p>Almost sold out!</p>
             </template>
             <template v-else>
               <p>Out of Stock</p>
             </template>
-            <p>{{ products[currentProductIndex].description }}</p>
-            <a :href="products[currentProductIndex].link">Visit product</a>
+            <ul>
+              <li v-for="detail in variants[currentVariantIndex].details">{{ detail }}</li>
+            </ul>
+            <h2>Variants</h2>
+            <div v-for="(variant, index) in variants" :key="index" @mouseover="updateVariant(index)" class="color-circle" :style="{ backgroundColor: variant.color }"></div>
+            <hr>
+            <h2>Sizes</h2>
+            <div v-for="(sizes, index) in variants[currentVariantIndex].sizes" :key="index" @mouseover="updateVariant(index)" class="color-circle" :style="{ backgroundColor: sizes.size }"></div>
+            <p>{{ variants[currentVariantIndex].description }}</p>
+            <a :href="variants[currentVariantIndex].link">Visit product</a>
           </div>
         </div>
       </div>
