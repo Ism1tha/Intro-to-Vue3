@@ -8,6 +8,7 @@ const app = Vue.createApp({
                 0: {
                     id: 2234,
                     name: 'Socks Blue',
+                    color: 'blue',
                     image: 'assets/images/socks_blue.jpg',
                     link: 'https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=socks+blue',
                     inventory: 10,
@@ -18,6 +19,7 @@ const app = Vue.createApp({
                 1: {
                     id: 2235,
                     name: 'Socks Green',
+                    color: 'green',
                     image: 'assets/images/socks_green.jpg',
                     link: 'https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=socks+green',
                     inventory: 0,
