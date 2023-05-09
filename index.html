@@ -19,6 +19,18 @@
           </div>
           <div class="product-info">
             <h1>{{ products[currentProductIndex].name }}</h1>
+            <p v-if="products[currentProductIndex].onSale" style="color: red; font-weight: bold;">
+              On Sale!
+            </p>
+            <template v-if="products[currentProductIndex].inventory > 10">
+              <p>In Stock</p>
+            </template>
+            <template v-else-if="products[currentProductIndex].inventory <= 10 && products[currentProductIndex].inventory > 0">
+              <p>Almost sold out!</p>
+            </template>
+            <template v-else>
+              <p>Out of Stock</p>
+            </template>
             <p>{{ products[currentProductIndex].description }}</p>
             <a :href="products[currentProductIndex].link">Visit product</a>
           </div>
