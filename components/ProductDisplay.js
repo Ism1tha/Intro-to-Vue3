@@ -26,7 +26,7 @@ app.component('product-display', {
           <li v-for="detail in variants[currentVariantIndex].details">{{ detail }}</li>
         </ul>
         <h2>Variants</h2>
-        <div v-for="(variant, index) in variants" :key="index" :style="{ backgroundColor: variant.color }" @click="currentVariantIndex = index" @mouseover="previewVariant(index)" @mouseout="currentImageIndex = currentVariantIndex" class="color-circle" :style="{ backgroundColor: variant.color }"></div>
+        <div v-for="(variant, index) in variants" :key="index" @click="currentVariantIndex = index" @mouseover="previewVariant(index)" @mouseout="currentImageIndex = currentVariantIndex" class="color-circle" :style="{ backgroundColor: variant.color }"></div>
         <hr>
         <h2>Sizes</h2>
         <div v-for="(size, index) in variants[currentVariantIndex].sizes" :key="index">
@@ -89,5 +89,9 @@ app.component('product-display', {
         previewVariant(index) {
             this.currentImageIndex = index;
         },
-    }
+        addToCart() {
+            this.$emit('add-to-cart', this.variants[this.currentVariantIndex].id)
+        }
+    },
+    emits: ['add-to-cart'],
 })

@@ -6,8 +6,9 @@ const app = Vue.createApp({
         }
     },
     methods: {
-        addToCart() {
-            this.cart.push(this.variants[this.currentVariantIndex].id)
+        updateCart(index) {
+            console.log("updateCart");
+            this.cart.push(index)
         }
     },
 })
