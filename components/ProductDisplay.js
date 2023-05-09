@@ -36,6 +36,8 @@ app.component('product-display', {
         <button class="button" :class="{ disabledButton: variants[currentVariantIndex].inventory == 0 }" :disabled="variants[currentVariantIndex].inventory == 0" @click="addToCart">Add to Cart</button>
       </div>
     </div>
+    <review-list v-if="reviews.length" :reviews="reviews"></review-list>
+    <review-form @review-submitted="addReview"></review-form>
   </div>`,
     props: {
         premium: {
@@ -71,7 +73,8 @@ app.component('product-display', {
                     details: ['50% cotton', '30% wool', '20% polyester'],
                     sizes: ['S', 'M', 'L', 'XL'],
                 },
-            }
+            },
+            reviews: [],
         }
     },
     computed: {
@@ -91,6 +94,9 @@ app.component('product-display', {
         },
         addToCart() {
             this.$emit('add-to-cart', this.variants[this.currentVariantIndex].id)
+        },
+        addReview(review) {
+            this.reviews.push(review)
         }
     },
     emits: ['add-to-cart'],
