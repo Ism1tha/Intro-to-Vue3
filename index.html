@@ -10,12 +10,25 @@
   </head>
   <body>
     <div id="app">
-      <h1>{{ product }}</h1>
-      <p>{{ product_description }}</p>
+      <div class="nav-bar"></div>
+      <div class="product-display">
+        <div class="product-container">
+          <div class="product-image">
+            <!-- Image goes here -->
+            <img :src="products[currentProductIndex].image">
+          </div>
+          <div class="product-info">
+            <h1>{{ products[currentProductIndex].name }}</h1>
+            <p>{{ products[currentProductIndex].description }}</p>
+            <a :href="products[currentProductIndex].link">Visit product</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Import App -->
     <script src="./main.js"></script>
+
     <!-- Mount App -->
     <script>
       const mountedApp = app.mount("#app");
