@@ -37,5 +37,10 @@ const app = Vue.createApp({
         previewVariant(index) {
             this.currentImageIndex = index;
         }
+    },
+    computed: {
+        title() {
+            return "Vue Shop - " + this.variants[this.currentVariantIndex].name
+        }
     }
 })

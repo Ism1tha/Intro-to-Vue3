@@ -18,7 +18,7 @@
             <img :src="variants[currentImageIndex].image">
           </div>
           <div class="product-info">
-            <h1>{{ variants[currentVariantIndex].name }}</h1>
+            <h1>{{ title }}</h1>
             <p v-if="variants[currentVariantIndex].onSale" style="color: red; font-weight: bold;">
               On Sale!
             </p>
@@ -38,9 +38,11 @@
             <div v-for="(variant, index) in variants" :key="index" :style="{ backgroundColor: variant.color }" @click="currentVariantIndex = index" @mouseover="previewVariant(index)" @mouseout="currentImageIndex = currentVariantIndex" class="color-circle" :style="{ backgroundColor: variant.color }"></div>
             <hr>
             <h2>Sizes</h2>
-            <div v-for="(sizes, index) in variants[currentVariantIndex].sizes" :key="index" @mouseover="updateVariant(index)" class="color-circle" :style="{ backgroundColor: sizes.size }"></div>
+            <div v-for="(size, index) in variants[currentVariantIndex].sizes" :key="index">
+              <p>{{ size }}</p>
+            </div>
             <p>{{ variants[currentVariantIndex].description }}</p>
-            <button class="button" :class="{ disabledButton: !inStock }" :disabled="!inStock" @click="addToCart">Add to Cart</button>
+            <button class="button" :class="{ disabledButton: variants[currentVariantIndex].inventory == 0 }" :disabled="variants[currentVariantIndex].inventory == 0" @click="addToCart">Add to Cart</button>
           </div>
         </div>
       </div>
