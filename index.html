@@ -11,45 +11,14 @@
   <body>
     <div id="app">
       <div class="nav-bar"></div>
-      <div class="product-display">
-        <div class="product-container">
-          <div class="product-image">
-            <!-- Image goes here -->
-            <img :src="variants[currentImageIndex].image">
-          </div>
-          <div class="product-info">
-            <h1>{{ title }}</h1>
-            <p v-if="variants[currentVariantIndex].onSale" style="color: red; font-weight: bold;">
-              On Sale!
-            </p>
-            <template v-if="variants[currentVariantIndex].inventory > 10">
-              <p>In Stock</p>
-            </template>
-            <template v-else-if="variants[currentVariantIndex].inventory <= 10 && variants[currentVariantIndex].inventory > 0">
-              <p>Almost sold out!</p>
-            </template>
-            <template v-else>
-              <p>Out of Stock</p>
-            </template>
-            <ul>
-              <li v-for="detail in variants[currentVariantIndex].details">{{ detail }}</li>
-            </ul>
-            <h2>Variants</h2>
-            <div v-for="(variant, index) in variants" :key="index" :style="{ backgroundColor: variant.color }" @click="currentVariantIndex = index" @mouseover="previewVariant(index)" @mouseout="currentImageIndex = currentVariantIndex" class="color-circle" :style="{ backgroundColor: variant.color }"></div>
-            <hr>
-            <h2>Sizes</h2>
-            <div v-for="(size, index) in variants[currentVariantIndex].sizes" :key="index">
-              <p>{{ size }}</p>
-            </div>
-            <p>{{ variants[currentVariantIndex].description }}</p>
-            <button class="button" :class="{ disabledButton: variants[currentVariantIndex].inventory == 0 }" :disabled="variants[currentVariantIndex].inventory == 0" @click="addToCart">Add to Cart</button>
-          </div>
-        </div>
-      </div>
+      <product-display :premium="premium"></product-display>
     </div>
 
     <!-- Import App -->
     <script src="./main.js"></script>
+
+    <!-- Import Components -->
+    <script src="./components/ProductDisplay.js"></script>
 
     <!-- Mount App -->
     <script>
